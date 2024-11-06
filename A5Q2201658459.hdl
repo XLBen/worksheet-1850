@@ -1,0 +1,12 @@
+CHIP A5Q2201658459 {
+    IN W, G, X;
+    OUT L;
+PARTS: 
+    Not(in=W,out=NotW);
+    Not(in=G,out=NotG);
+    Not(in=X,out=NotX);
+    And(a=NotW,b=NotG,out=NOTWandG);
+    Or(a=NotW,b=NotG,out=NOTWorG);
+    Or(a=NOTWandG,b=NOTWorG,out=AndorOr);
+    And(a=AndorOr,b=NotX,out=L);
+}
