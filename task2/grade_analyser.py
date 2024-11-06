@@ -1,5 +1,5 @@
 file_name = input("which file you wants to classify?:")
-new_file_name = file_name.replace(".csv", "_out.csv")
+new_file_name = file_name+"_out.csv"
 with open(file_name, "r") as file: 
     content=file.readlines()
 with open(new_file_name, "w") as out_file:
