@@ -2,22 +2,31 @@ CHIP A6Q2201658459 {
     IN a, b, c, d;
     OUT f;
 PARTS:
-    Not(in=a,out=NOTa);
-    Not(in=b,out=NOTb);
-    Not(in=c,out=NOTc);
-    Not(in=d,out=NOTd);
-    And(a=NOTa,b=NOTb,out=NOTaANDNOTb);
-    And(a=NOTaANDNOTb,b=NOTd,out=FIRST);
-    And(a=NOTa,b=b,out=NOTaANDb);
-    And(a=NOTaANDb,b=NOTc,out=NOTaANDbANDNOTc);
-    And(a=NOTaANDbANDNOTc,b=d,out=SECOND);
-    And(a=a,b=NOTb,out=aANDNOTb);
-    And(a=aANDNOTb,b=c,out=aANDNOTbANDc);
-    And(a=aANDNOTbANDc,b=d,out=THIRD);
-    And(a=a,b=b,out=aANDb);
-    And(a=aANDb,b=NOTc,out=aANDbANDNOTc);
-    And(a=aANDbANDNOTc,b=NOTd, out=FOURTH);
-    Or(a=FIRST,b=SECOND, out=FIRSTANDSECOND);
+
+    Not(in=a, out=NOTa);
+    Not(in=b, out=NOTb);
+    Not(in=c, out=NOTc);
+    Not(in=d, out=NOTd);
+
+    And(a=NOTa, b=NOTb, c=NOTc, d=d, out=FIRST);
+    And(a=NOTa, b=NOTb, c=c, d=NOTd, out=SECOND);
+    And(a=NOTa, b=b, c=NOTc, d=NOTd, out=THIRD);
+    And(a=a, b=b, c=c, d=NOTd, out=FOURTH);
+    And(a=a, b=b, c=c, d=d, out=FIFTH);
+
+    Or(a=FIRST, b=SECOND, out=FIRSTANDSECOND);
     Or(a=FIRSTANDSECOND, b=THIRD, out=FIRSTANDSECONDANDTHIRD);
-    Or(a=FIRSTANDSECONDANDTHIRD, b=FOURTH, out=f);
+    Or(a=FIRSTANDSECONDANDTHIRD, b=FOURTH, out=FIRSTANDSECONDANDTHIRDANDFOURTH);
+    Or(a=FIRSTANDSECONDANDTHIRDANDFOURTH, b=FIFTH, out=f);
 }
+
+
+
+
+
+
+
+
+
+
+ChatGPT can make mistakes.
