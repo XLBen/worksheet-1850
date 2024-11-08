@@ -2,18 +2,15 @@ CHIP A6Q2201658459 {
     IN a, b, c, d;
     OUT f;
 PARTS:
-
     Not(in=a, out=NOTa);
     Not(in=b, out=NOTb);
     Not(in=c, out=NOTc);
     Not(in=d, out=NOTd);
-
     And(a=NOTa, b=NOTb, c=NOTc, d=d, out=FIRST);
     And(a=NOTa, b=NOTb, c=c, d=NOTd, out=SECOND);
     And(a=NOTa, b=b, c=NOTc, d=NOTd, out=THIRD);
     And(a=a, b=b, c=c, d=NOTd, out=FOURTH);
     And(a=a, b=b, c=c, d=d, out=FIFTH);
-
     Or(a=FIRST, b=SECOND, out=FIRSTANDSECOND);
     Or(a=FIRSTANDSECOND, b=THIRD, out=FIRSTANDSECONDANDTHIRD);
     Or(a=FIRSTANDSECONDANDTHIRD, b=FOURTH, out=FIRSTANDSECONDANDTHIRDANDFOURTH);
