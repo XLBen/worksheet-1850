@@ -6,15 +6,20 @@ PARTS:
     Not(in=B, out=NotB);
     Not(in=C, out=NotC);
     Not(in=D, out=NotD);
-    And(a=NotA, b=NotB, out=Temp1);
-    And(a=NotC, b=NotD, out=Temp2);
-    And(a=Temp1, b=Temp2, out=Temp3);
-    And(a=NotA, b=NotB, out=Temp4);
-    And(a=NotC, b=D, out=Temp5);
-    And(a=Temp4, b=Temp5, out=Temp6);
-    And(a=NotA, b=B, out=Temp7);
-    And(a=NotC, b=D, out=Temp8);
-    And(a=Temp7, b=Temp8, out=Temp9);
-    Or(a=Temp3, b=Temp6, out=Temp10);
-    Or(a=Temp10, b=Temp9, out=b);
+    And(a=NotA, b=NotB, out=Temp1_1);
+    And(a=Temp1_1, b=NotC, out=Temp1_2);
+    And(a=Temp1_2, b=NotD, out=Temp1);
+    And(a=NotA, b=NotB, out=Temp2_1);
+    And(a=Temp2_1, b=C, out=Temp2_2);
+    And(a=Temp2_2, b=NotD, out=Temp2);
+    And(a=NotA, b=NotB, out=Temp3_1);
+    And(a=Temp3_1, b=C, out=Temp3_2);
+    And(a=Temp3_2, b=D, out=Temp3);
+    And(a=NotA, b=B, out=Temp4_1);
+    And(a=Temp4_1, b=NotC, out=Temp4_2);
+    And(a=Temp4_2, b=NotD, out=Temp4);
+    Or(a=Temp1, b=Temp2, out=Temp5);
+    Or(a=Temp5, b=Temp3, out=Temp6);
+    Or(a=Temp6, b=Temp4, out=b);
 }
+
