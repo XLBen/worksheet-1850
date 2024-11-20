@@ -1,4 +1,4 @@
-    CHIP DecoderSegment201658459 {
+CHIP DecoderSegment201658459 {
     IN A, B, C, D;
     OUT b;
 PARTS:
@@ -6,36 +6,47 @@ PARTS:
     Not(in=B, out=NotB);
     Not(in=C, out=NotC);
     Not(in=D, out=NotD);
+
     And(a=NotA, b=NotB, out=And0);
     And(a=And0, b=NotC, out=And0_2);
     And(a=And0_2, b=NotD, out=And0_3);
+
     And(a=NotA, b=NotB, out=And2);
     And(a=And2, b=NotC, out=And2_2);
     And(a=And2_2, b=D, out=And2_3);
+
     And(a=NotA, b=NotB, out=And6);
     And(a=And6, b=C, out=And6_2);
     And(a=And6_2, b=NotD, out=And6_3);
+
     And(a=A, b=NotB, out=And8);
     And(a=And8, b=NotC, out=And8_2);
     And(a=And8_2, b=NotD, out=And8_3);
+
     And(a=A, b=NotB, out=AndA);
     And(a=AndA, b=NotC, out=AndA_2);
     And(a=AndA_2, b=D, out=AndA_3);
+
     And(a=A, b=NotB, out=AndB);
     And(a=AndB, b=C, out=AndB_2);
     And(a=AndB_2, b=D, out=AndB_3);
+
     And(a=A, b=C, out=AndC);
     And(a=AndC, b=NotC, out=AndC_2);
     And(a=AndC_2, b=NotD, out=AndC_3);
+
     And(a=A, b=C, out=AndD);
     And(a=AndD, b=NotC, out=AndD_2);
     And(a=AndD_2, b=D, out=AndD_3);
+
     And(a=A, b=C, out=AndE);
     And(a=AndE, b=D, out=AndE_2);
     And(a=AndE_2, b=NotD, out=AndE_3);
+
     And(a=A, b=C, out=AndF);
     And(a=AndF, b=D, out=AndF_2);
     And(a=AndF_2, b=D, out=AndF_3);
+
     Or(a=And0_3, b=And2_3, out=Or1);
     Or(a=Or1, b=And6_3, out=Or2);
     Or(a=Or2, b=And8_3, out=Or3);
