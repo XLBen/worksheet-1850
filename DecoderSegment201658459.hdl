@@ -6,54 +6,43 @@ PARTS:
     Not(in=B, out=NotB);
     Not(in=C, out=NotC);
     Not(in=D, out=NotD);
-
     And(a=NotA, b=NotB, out=And0);
-    And(a=And0, b=NotC, out=And0_2);
-    And(a=And0_2, b=NotD, out=And0_3);
-
+    And(a=And0, b=NotC, out=temp_0_1);
+    And(a=temp_0_1, b=NotD, out=Final_0);
     And(a=NotA, b=NotB, out=And2);
-    And(a=And2, b=NotC, out=And2_2);
-    And(a=And2_2, b=D, out=And2_3);
-
+    And(a=And2, b=NotC, out=temp_2_1);
+    And(a=temp_2_1, b=D, out=Final_2);
     And(a=NotA, b=NotB, out=And6);
-    And(a=And6, b=C, out=And6_2);
-    And(a=And6_2, b=NotD, out=And6_3);
-
+    And(a=And6, b=C, out=temp_6_1);
+    And(a=temp_6_1, b=NotD, out=Final_6);
     And(a=A, b=NotB, out=And8);
-    And(a=And8, b=NotC, out=And8_2);
-    And(a=And8_2, b=NotD, out=And8_3);
-
+    And(a=And8, b=NotC, out=temp_8_1);
+    And(a=temp_8_1, b=NotD, out=Final_8);
     And(a=A, b=NotB, out=AndA);
-    And(a=AndA, b=NotC, out=AndA_2);
-    And(a=AndA_2, b=D, out=AndA_3);
-
+    And(a=AndA, b=NotC, out=temp_A_1);
+    And(a=temp_A_1, b=D, out=Final_A);
     And(a=A, b=NotB, out=AndB);
-    And(a=AndB, b=C, out=AndB_2);
-    And(a=AndB_2, b=D, out=AndB_3);
-
+    And(a=AndB, b=C, out=temp_B_1);
+    And(a=temp_B_1, b=D, out=Final_B);
     And(a=A, b=C, out=AndC);
-    And(a=AndC, b=NotC, out=AndC_2);
-    And(a=AndC_2, b=NotD, out=AndC_3);
-
+    And(a=AndC, b=NotC, out=temp_C_1);
+    And(a=temp_C_1, b=NotD, out=Final_C);
     And(a=A, b=C, out=AndD);
-    And(a=AndD, b=NotC, out=AndD_2);
-    And(a=AndD_2, b=D, out=AndD_3);
-
+    And(a=AndD, b=NotC, out=temp_D_1);
+    And(a=temp_D_1, b=D, out=Final_D);
     And(a=A, b=C, out=AndE);
-    And(a=AndE, b=D, out=AndE_2);
-    And(a=AndE_2, b=NotD, out=AndE_3);
-
+    And(a=AndE, b=D, out=temp_E_1);
+    And(a=temp_E_1, b=NotD, out=Final_E);
     And(a=A, b=C, out=AndF);
-    And(a=AndF, b=D, out=AndF_2);
-    And(a=AndF_2, b=D, out=AndF_3);
-
-    Or(a=And0_3, b=And2_3, out=Or1);
-    Or(a=Or1, b=And6_3, out=Or2);
-    Or(a=Or2, b=And8_3, out=Or3);
-    Or(a=Or3, b=AndA_3, out=Or4);
-    Or(a=Or4, b=AndB_3, out=Or5);
-    Or(a=Or5, b=AndC_3, out=Or6);
-    Or(a=Or6, b=AndD_3, out=Or7);
-    Or(a=Or7, b=AndE_3, out=Or8);
-    Or(a=Or8, b=AndF_3, out=b);
+    And(a=AndF, b=D, out=temp_F_1);
+    And(a=temp_F_1, b=D, out=Final_F);
+    Or(a=Final_0, b=Final_2, out=Or1);
+    Or(a=Or1, b=Final_6, out=Or2);
+    Or(a=Or2, b=Final_8, out=Or3);
+    Or(a=Or3, b=Final_A, out=Or4);
+    Or(a=Or4, b=Final_B, out=Or5);
+    Or(a=Or5, b=Final_C, out=Or6);
+    Or(a=Or6, b=Final_D, out=Or7);
+    Or(a=Or7, b=Final_E, out=Or8);
+    Or(a=Or8, b=Final_F, out=b);
 }
