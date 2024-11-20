@@ -6,36 +6,47 @@ PARTS:
     Not(in=B, out=NotB);
     Not(in=C, out=NotC);
     Not(in=D, out=NotD);
+
     And(a=NotA, b=NotB, out=And0);
     And(a=And0, b=NotC, out=temp_0_1);
     And(a=temp_0_1, b=NotD, out=Final_0);
+
     And(a=NotA, b=NotB, out=And2);
     And(a=And2, b=NotC, out=temp_2_1);
     And(a=temp_2_1, b=D, out=Final_2);
+
     And(a=NotA, b=NotB, out=And6);
     And(a=And6, b=C, out=temp_6_1);
     And(a=temp_6_1, b=NotD, out=Final_6);
+
     And(a=A, b=NotB, out=And8);
     And(a=And8, b=NotC, out=temp_8_1);
     And(a=temp_8_1, b=NotD, out=Final_8);
+
     And(a=A, b=NotB, out=AndA);
     And(a=AndA, b=NotC, out=temp_A_1);
     And(a=temp_A_1, b=D, out=Final_A);
+
     And(a=A, b=NotB, out=AndB);
     And(a=AndB, b=C, out=temp_B_1);
     And(a=temp_B_1, b=D, out=Final_B);
+
     And(a=A, b=C, out=AndC);
     And(a=AndC, b=NotC, out=temp_C_1);
     And(a=temp_C_1, b=NotD, out=Final_C);
+
     And(a=A, b=C, out=AndD);
     And(a=AndD, b=NotC, out=temp_D_1);
     And(a=temp_D_1, b=D, out=Final_D);
+
     And(a=A, b=C, out=AndE);
     And(a=AndE, b=D, out=temp_E_1);
     And(a=temp_E_1, b=NotD, out=Final_E);
+
     And(a=A, b=C, out=AndF);
     And(a=AndF, b=D, out=temp_F_1);
     And(a=temp_F_1, b=D, out=Final_F);
+
     Or(a=Final_0, b=Final_2, out=Or1);
     Or(a=Or1, b=Final_6, out=Or2);
     Or(a=Or2, b=Final_8, out=Or3);
