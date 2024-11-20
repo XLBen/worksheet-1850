@@ -1,4 +1,3 @@
-PARTS:
     CHIP DecoderSegment201658459 {
     IN A, B, C, D;
     OUT b;
