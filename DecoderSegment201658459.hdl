@@ -1,0 +1,18 @@
+CHIP DecoderSegment201658459 {
+    IN A, B, C, D;
+    OUT b;
+PARTS:
+    NotA = NOT(A);
+    NotB = NOT(B);
+    NotC = NOT(C);
+    NotD = NOT(D);
+    And1 = AND(NotA, NotB, NotC, NotD);
+    And2 = AND(NotA, B, NotC, D);
+    And3 = AND(A, NotB, NotC, NotD);
+    And4 = AND(A, B, NotC, NotD);
+    And5 = AND(A, B, NotC, D);
+    And6 = AND(NotA, B, NotC, D);
+    And7 = AND(A, B, C, NotD);
+    And8 = AND(A, B, C, D);
+    b = OR(And1, And2, And3, And4, And5, And6, And7, And8);
+}
