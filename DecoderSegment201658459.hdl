@@ -14,5 +14,7 @@ PARTS:
     AND(a=And4, b=And5, out=And6);
     AND(a=A, b=B, out=And7);
     AND(a=C, b=NotD, out=And8);
-    OR4(a=And3, b=And6, c=And7, d=And8, out=b);
+    OR(a=And3, b=And6, out=Or1);
+    OR(a=And7, b=And8, out=Or2);
+    OR(a=Or1, b=Or2, out=b);
 }
