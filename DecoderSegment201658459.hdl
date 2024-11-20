@@ -6,14 +6,11 @@ PARTS:
     Not(in=B, out=NotB);
     Not(in=C, out=NotC);
     Not(in=D, out=NotD);
-
     Or(a=NotC, b=D, out=Temp1);
     And(a=NotA, b=NotB, out=Temp2);
     And(a=Temp2, b=Temp1, out=Temp3);
-
     Or(a=NotA, b=B, out=Temp4);
     And(a=Temp4, b=NotC, out=Temp5);
-
     Or(a=Temp3, b=Temp5, out=Temp6);
     Or(a=Temp6, b=NotA, out=b);
 }
