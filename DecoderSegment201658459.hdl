@@ -40,5 +40,5 @@ PARTS:
     Or(a=Final9, b=Or1, out=Or5);
     Or(a=Or2, b=Or3, out=Or6);
     Or(a=Or4, b=Or5, out=FINNA);
-    Not(in=FINNA, out=b)
+    Not(in=FINNA, out=b);
 }
