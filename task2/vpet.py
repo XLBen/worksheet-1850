@@ -5,12 +5,10 @@
 # When an instance of VirtualPet is created, only the name is needed
 # for the __init__ method
 class VirtualPet:
-    def __init__(self,name,energy,hunger):
+    def __init__(self, name, energy=10, hunger=0):
         self.name = name
         self.energy = energy
         self.hunger = hunger
-        energy = 10
-        hunger = 0
 
 # this class has the following methods:
 # (1) play() - simulate playing by reducing the energy by 2 and increase the hunger by 2
