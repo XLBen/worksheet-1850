@@ -4,23 +4,11 @@ CHIP DecoderSegment201658459 {
 PARTS:
     Not(in=A, out=NotA);
     Not(in=B, out=NotB);
+    And(in=NotA, in=NotB, out=AB_comb);
+    And(in=A, in=B, out=AB_comb2);
     Not(in=C, out=NotC);
     Not(in=D, out=NotD);
-    
-    // (A'B') term
-    And(a=NotA, b=NotB, out=Part1);
-    
-    // (A'B) term
-    And(a=NotA, b=B, out=Part2);
-    
-    // (AB') term
-    And(a=A, b=NotB, out=Part3);
-    
-    // (CD') term
-    And(a=C, b=NotD, out=Part4);
-    
-    // OR the parts together to get output b
-    Or(a=Part1, b=Part2, out=Intermediate1);
-    Or(a=Intermediate1, b=Part3, out=Intermediate2);
-    Or(a=Intermediate2, b=Part4, out=b);
+    And(in=NotC, in=NotD, out=CD_comb);
+    Or(in=AB_comb, in=AB_comb2, out=Or_AB);
+    Or(in=Or_AB, in=CD_comb, out=b);
 }
