@@ -10,7 +10,7 @@ PARTS:
     And(a=NotC,b=NotD,out=NotCD);
     And(a=C,b=NotD,out=NotCandD);
     Or(a=NotAB,b=D,out=First);
-    Or(a=NotCD,b=Aout=Second);
+    Or(a=NotCD,b=A,out=Second);
     Or(a=NotCandD,b=B,out=Third);
     Or(a=D,b=A,out=Fouth);
     And(a=First,b=Second,out=PART1);
