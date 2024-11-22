@@ -2,9 +2,7 @@ CHIP DecoderSegment201658459 {
     IN A, B, C, D;
     OUT b;
 PARTS:
-    Not(in=A,out=NotA);
     Not(in=B,out=NotB);
-    Not(in=C,out=NotC);
     Not(in=D,out=NotD);
     
     And(a=C,b=NotD,out=Apart);
@@ -18,6 +16,6 @@ PARTS:
     And(a=AandNOTB,b=C,out=Dpart);
 
     Or(a=Apart,b=Bpart,out=fina1);
-    Or(a=Dpart,b=Cpart,out=fina2);
-    Or(a=fina1,b=fina2,out=b);
+    Or(a=fina1,b=Cpart,out=fina2);
+    Or(a=fina2,b=Dpart,out=b);
 }
