@@ -7,14 +7,15 @@ PARTS:
     Not(in=C,out=NotC);
     Not(in=D,out=NotD);
     
-    And(a=C,b=D,out=Apart);
+    And(a=C,b=NotD,out=Apart);
 
-    And(a=NotA,b=NotB,out=NotAB);
-    And(a=NotAB,b=NotD,out=Bpart);
+    And(a=A,b=NotB,out=NotBandA);
+    And(a=NotBandA,b=C,out=Bpart);
 
     And(a=A,b=B,out=Cpart);
 
-    And(a=A,b=C,out=Dpart);
+    And(a=A,b=NotB,out=AandNOTB);
+    And(a=AandNOTB,b=C,out=Dpart);
 
     Or(a=Apart,b=Bpart,out=fina1);
     Or(a=Dpart,b=Cpart,out=fina2);
