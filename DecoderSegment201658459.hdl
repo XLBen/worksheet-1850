@@ -21,7 +21,7 @@ PARTS:
     And(a=A,b=C,out=Epart);
 
     Or(a=Apart,b=Bpart,out=fina1);
-    Or(a=fina1,b=Cpart,out=fina2);
-    Or(a=fina2,b=Dpart,out=fina3);
+    Or(a=Dpart,b=Cpart,out=fina2);
+    Or(a=fina1,b=fina2,out=fina3);
     Or(a=fina3,b=Epart,out=b);
 }
