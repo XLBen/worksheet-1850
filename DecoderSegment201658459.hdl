@@ -13,5 +13,4 @@ PARTS:
 
     Or(a=NotD,b=A,out=pc);
     And(a=pa,b=pb,out=pd);
-    And(a=pd,b=pc,out=b);
-}
+    And(a=pd,b=pc,out=b);}
