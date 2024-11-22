@@ -15,5 +15,4 @@ PARTS:
 
     And(a=pa,b=pb,out=pd);
     And(a=pd,b=pc,out=b);
-
 }
