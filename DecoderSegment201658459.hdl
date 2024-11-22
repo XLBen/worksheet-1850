@@ -4,13 +4,11 @@ CHIP DecoderSegment201658459 {
 PARTS:
     Not(in=B,out=NotB);
     Not(in=D,out=NotD);
-    
     Or(a=C,b=NotD);
     Or(a=B,b=CandNOTD,out=pa);
-
     Or(a=NotB,b=A,out=NotBandA);
     Or(a=C,b=NotBandA,out=pb);
-
     Or(a=NotD,b=A,out=pc);
     And(a=pa,b=pb,out=pd);
-    And(a=pd,b=pc,out=b);}
+    And(a=pd,b=pc,out=b);
+}
