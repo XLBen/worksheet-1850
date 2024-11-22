@@ -5,10 +5,10 @@ PARTS:
     Not(in=B,out=NotB);
     Not(in=D,out=NotD);
     
-    And(a=C,b=NotD);
+    Or(a=C,b=NotD);
     Or(a=B,b=CandNOTD,out=pa);
 
-    And(a=NotB,b=A,out=NotBandA);
+    Or(a=NotB,b=A,out=NotBandA);
     Or(a=C,b=NotBandA,out=pb);
 
     Or(a=NotD,b=A,out=pc);
