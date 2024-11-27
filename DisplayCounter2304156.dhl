@@ -1,0 +1,7 @@
+CHIP DisplayCounter2304156 {
+    IN inc, reset;
+    OUT a,b,c,d,e,f,g;
+PARTS:
+    Counter16(in=inc, reset=reset, out=counter);
+    Decoder16(in=counter, out={a, b, c, d, e, f, g});
+}
