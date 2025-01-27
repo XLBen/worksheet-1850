@@ -33,4 +33,4 @@ CHIP P2S {
     Mux(a=st0, b=st1, sel=c0, out=mux0);
     Mux(a=st2, b=st3, sel=c0, out=mux1);
     Mux(a=mux0, b=mux1, sel=c1, out=sout);
-}
+}In HDL file /autograder/submission/P2S.hdl, Line 20, ',' or ')' are expected: load P2S.hdl
