@@ -20,17 +20,17 @@ CHIP P2S {
     Not(in=count3, out=ncount3);
     And(a=tx, b=ncount3, out=cont);
     Or(a=start, b=cont, out=txintemp);
-    And(a=txintemp, b=enable, out=txin);  // enable=0 时强制终止传输
+    And(a=txintemp, b=enable, out=txin);  
     DFF(in=txin, out=tx);
 
     Not(in=c0, out=notc0);
     Mux(a=c0, b=notc0, sel=tx, out=c0intemp);
-    Mux(a=c0intemp, b=false, sel=complete, out=c0in); // complete=1 时复位 c0
+    Mux(a=c0intemp, b=false, sel=complete, out=c0in); 
     DFF(in=c0in, out=c0);
 
     Xor(a=c1, b=c0, out=xorc1c0);
     Mux(a=c1, b=xorc1c0, sel=tx, out=c1intemp);
-    Mux(a=c1intemp, b=false, sel=complete, out=c1in); // complete=1 时复位 c1
+    Mux(a=c1intemp, b=false, sel=complete, out=c1in); 
     DFF(in=c1in, out=c1);
 
 
