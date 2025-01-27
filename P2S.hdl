@@ -16,7 +16,9 @@ CHIP P2S {
     And(a=c1, b=c0, out=count3);
     Not(in=count3, out=ncount3);
     And(a=tx, b=ncount3, out=cont);
-    Or(a=start, b=cont, out=tx_in);
+      Xor(a=start, b=cont, out=xor1);  
+    And(a=start, b=cont, out=and1);
+    Xor(a=xor1, b=and1, out=tx_in);
     DFF(in=tx_in, out=tx);
     Not(in=c0, out=notc0);
     Mux(a=false, b=notc0, sel=tx, out=c0in);
