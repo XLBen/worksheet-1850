@@ -26,10 +26,12 @@ CHIP P2S {
     And(a=txintemp, b=enable, out=txin);
     DFF(in=txin, out=tx);
 
+
     Not(in=c0, out=notc0);
     Mux(in=c0, sel=tx, b=notc0, out=c0intemp);
     Mux(in=c0intemp, sel=complete, b=false, out=c0in);
     DFF(in=c0in, out=c0);
+
 
     Xor(a=c1, b=c0, out=xorc1c0);
     Mux(in=c1, sel=tx, b=xorc1c0, out=c1intemp);
