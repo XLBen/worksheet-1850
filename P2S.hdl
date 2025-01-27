@@ -2,18 +2,18 @@ CHIP P2S {
     IN indata[4], enable, load;
     OUT sout, complete;
 
-PARTS:
- 
-
-    Mux(a=st0, b=indata[0], sel=load, out=m0);
+    PARTS:
+    Mux(in=st0, sel=load, b=indata[0], out=m0);
     DFF(in=m0, out=st0);
-    Mux(a=st1, b=indata[1], sel=load, out=m1);
+    Mux(in=st1, sel=load, b=indata[1], out=m1);
     DFF(in=m1, out=st1);
-    Mux(a=st2, b=indata[2], sel=load, out=m2);
+    Mux(in=st2, sel=load, b=indata[2], out=m2);
     DFF(in=m2, out=st2);
-    Mux(a=st3, b=indata[3], sel=load, out=m3);
+    Mux(in=st3, sel=load, b=indata[3], out=m3);
     DFF(in=m3, out=st3);
 
+    Not(in=st0, out=zerotemp);
+    And(a=zerotemp, b=zerotemp, out=zero);
 
     Not(in=tx, out=ntx);
     And(a=enable, b=ntx, out=start);
@@ -21,26 +21,23 @@ PARTS:
     Not(in=count3, out=ncount3);
     And(a=tx, b=ncount3, out=cont);
     Or(a=start, b=cont, out=txintemp);
-    And(a=txintemp, b=enable, out=txin); 
+    And(a=txintemp, b=enable, out=txin);
     DFF(in=txin, out=tx);
 
-
     Not(in=c0, out=notc0);
-    Mux(a=c0, b=notc0, sel=tx, out=c0intttttemp);
-    Mux(a=c0intttttemp, b=false, sel=complete, out=cin); 
-    DFF(in=cin, out=c0);
+    Mux(in=c0, sel=tx, b=notc0, out=c0intemp);
+    Mux(in=c0intemp, sel=complete, b=zero, out=c0in);
+    DFF(in=c0in, out=c0);
 
     Xor(a=c1, b=c0, out=xorc1c0);
-    Mux(a=c1, b=xorc1c0, sel=tx, out=c1intemp);
-    Mux(a=c1intemp, b=false, sel=complete, out=c1in); 
+    Mux(in=c1, sel=tx, b=xorc1c0, out=c1intemp);
+    Mux(in=c1intemp, sel=complete, b=zero, out=c1in);
     DFF(in=c1in, out=c1);
-
 
     And(a=tx, b=c1, out=temp);
     And(a=temp, b=c0, out=complete);
 
-
-    Mux(a=st0, b=st1, sel=c0, out=mux0);
-    Mux(a=st2, b=st3, sel=c0, out=mux1);
-    Mux(a=mux0, b=mux1, sel=c1, out=sout);
+    Mux(in=st0, sel=c0, b=st1, out=mux0);
+    Mux(in=st2, sel=c0, b=st3, out=mux1);
+    Mux(in=mux0, sel=c1, b=mux1, out=sout);
 }
