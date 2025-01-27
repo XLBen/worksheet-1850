@@ -27,8 +27,8 @@ PARTS:
 
     Not(in=c0, out=notc0);
     Mux(a=c0, b=notc0, sel=tx, out=c0intttttemp);
-    Mux(a=c0intttttemp, b=false, sel=complete, out=c0in); 
-    DFF(in=c0in, out=c0);
+    Mux(a=c0intttttemp, b=false, sel=complete, out=cin); 
+    DFF(in=cin, out=c0);
 
     Xor(a=c1, b=c0, out=xorc1c0);
     Mux(a=c1, b=xorc1c0, sel=tx, out=c1intemp);
