@@ -12,8 +12,10 @@ CHIP P2S {
     Mux(in=st3, sel=load, b=indata[3], out=m3);
     DFF(in=m3, out=st3);
 
+
     Not(in=st0, out=zerotemp);
-    And(a=zerotemp, b=zerotemp, out=zero);
+    And(a=zerotemp, b=zerotemp, out=false);
+
 
     Not(in=tx, out=ntx);
     And(a=enable, b=ntx, out=start);
@@ -26,13 +28,14 @@ CHIP P2S {
 
     Not(in=c0, out=notc0);
     Mux(in=c0, sel=tx, b=notc0, out=c0intemp);
-    Mux(in=c0intemp, sel=complete, b=zero, out=c0in);
+    Mux(in=c0intemp, sel=complete, b=false, out=c0in);
     DFF(in=c0in, out=c0);
 
     Xor(a=c1, b=c0, out=xorc1c0);
     Mux(in=c1, sel=tx, b=xorc1c0, out=c1intemp);
-    Mux(in=c1intemp, sel=complete, b=zero, out=c1in);
+    Mux(in=c1intemp, sel=complete, b=false, out=c1in);
     DFF(in=c1in, out=c1);
+
 
     And(a=tx, b=c1, out=temp);
     And(a=temp, b=c0, out=complete);
