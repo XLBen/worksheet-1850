@@ -3,7 +3,8 @@ CHIP P2S {
     OUT sout, complete;
 
     PARTS:
-
+ 
+ 
     Mux(a=st0, b=indata[0], sel=load, out=m0);
     DFF(in=m0, out=st0);
     Mux(a=st1, b=indata[1], sel=load, out=m1);
@@ -13,24 +14,25 @@ CHIP P2S {
     Mux(a=st3, b=indata[3], sel=load, out=m3);
     DFF(in=m3, out=st3);
 
-  
+
     Not(in=tx, out=ntx);
     And(a=enable, b=ntx, out=start);
     And(a=c1, b=c0, out=count3);
     Not(in=count3, out=ncount3);
     And(a=tx, b=ncount3, out=cont);
-    Or(a=start, b=cont, out=txintemp);
-    And(a=txintemp, b=enable, out=txin);  
-    DFF(in=txin, out=tx);
+    Or(a=start, b=cont, out=tx_in_temp);
+    And(a=tx_in_temp, b=enable, out=tx_in);  // enable=0 时强制终止传输
+    DFF(in=tx_in, out=tx);
+
 
     Not(in=c0, out=notc0);
-    Mux(a=c0, b=notc0, sel=tx, out=c0intemp);
-    Mux(a=c0intemp, b=false, sel=complete, out=c0in); 
+    Mux(a=c0, b=notc0, sel=tx, out=c0in_temp);
+    Mux(a=c0in_temp, b=false, sel=complete, out=c0in); // complete=1 时复位 c0
     DFF(in=c0in, out=c0);
 
     Xor(a=c1, b=c0, out=xorc1c0);
-    Mux(a=c1, b=xorc1c0, sel=tx, out=c1intemp);
-    Mux(a=c1intemp, b=false, sel=complete, out=c1in); 
+    Mux(a=c1, b=xorc1c0, sel=tx, out=c1in_temp);
+    Mux(a=c1in_temp, b=false, sel=complete, out=c1in); // complete=1 时复位 c1
     DFF(in=c1in, out=c1);
 
 
