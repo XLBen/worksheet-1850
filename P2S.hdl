@@ -2,7 +2,7 @@ CHIP P2S {
     IN indata[4], enable, load;
     OUT sout, complete;
 
-    PARTS:
+PARTS:
  
 
     Mux(a=st0, b=indata[0], sel=load, out=m0);
