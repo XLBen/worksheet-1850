@@ -3,46 +3,33 @@ CHIP P2S {
     OUT sout, complete;
 
     PARTS:
-    Mux(in=st0, sel=load, b=indata[0], out=m0);
-    DFF(in=m0, out=st0);
-    Mux(in=st1, sel=load, b=indata[1], out=m1);
-    DFF(in=m1, out=st1);
-    Mux(in=st2, sel=load, b=indata[2], out=m2);
-    DFF(in=m2, out=st2);
-    Mux(in=st3, sel=load, b=indata[3], out=m3);
-    DFF(in=m3, out=st3);
 
-
-    Not(in=st0, out=zerotemp);
-    And(a=zerotemp, b=zerotemp, out=false);
-
-
-    Not(in=tx, out=ntx);
-    And(a=enable, b=ntx, out=start);
-    And(a=c1, b=c0, out=count3);
-    Not(in=count3, out=ncount3);
-    And(a=tx, b=ncount3, out=cont);
-    Or(a=start, b=cont, out=txintemp);
-    And(a=txintemp, b=enable, out=txin);
-    DFF(in=txin, out=tx);
-
-
-    Not(in=c0, out=notc0);
-    Mux(in=c0, sel=tx, b=notc0, out=c0intemp);
-    Mux(in=c0intemp, sel=complete, b=false, out=c0in);
-    DFF(in=c0in, out=c0);
-
-
-    Xor(a=c1, b=c0, out=xorc1c0);
-    Mux(in=c1, sel=tx, b=xorc1c0, out=c1intemp);
-    Mux(in=c1intemp, sel=complete, b=false, out=c1in);
-    DFF(in=c1in, out=c1);
-
-
-    And(a=tx, b=c1, out=temp);
-    And(a=temp, b=c0, out=complete);
-
-    Mux(in=st0, sel=c0, b=st1, out=mux0);
-    Mux(in=st2, sel=c0, b=st3, out=mux1);
-    Mux(in=mux0, sel=c1, b=mux1, out=sout);
+    Bit(in=indata[0], load=load, out=storedData0);
+    Bit(in=indata[1], load=load, out=storedData1);
+    Bit(in=indata[2], load=load, out=storedData2);
+    Bit(in=indata[3], load=load, out=storedData3);
+    Bit(in=nextActive, load=true, out=active);
+    Bit(in=nextCounter0, load=true, out=counter0);
+    Bit(in=nextCounter1, load=true, out=counter1);
+    And(a=counter0, b=counter1, out=counterIs3);
+    And(a=counterIs3, b=active, out=transmissionComplete);
+    Bit(in=transmissionComplete, load=true, out=prevTransmissionComplete);
+    Not(in=prevTransmissionComplete, out=notPrevTransmissionComplete);
+    And(a=transmissionComplete, b=notPrevTransmissionComplete, out=complete);
+    Not(in=active, out=notActive);
+    And(a=enable, b=notActive, out=startTransmission);
+    Not(in=transmissionComplete, out=notTransmissionComplete);
+    And(a=active, b=notTransmissionComplete, out=activeAndNotComplete);
+    Or(a=startTransmission, b=activeAndNotComplete, out=nextActive);
+    Xor(a=counter0, b=active, out=incrementedCounter0);
+    And(a=counter0, b=active, out=carryOut0);
+    Xor(a=counter1, b=carryOut0, out=incrementedCounter1);
+    Mux(a=counter0, b=incrementedCounter0, sel=active, out=counterNext0);
+    Mux(a=counterNext0, b=false, sel=startTransmission, out=nextCounter0);
+    Mux(a=counter1, b=incrementedCounter1, sel=active, out=counterNext1);
+    Mux(a=counterNext1, b=false, sel=startTransmission, out=nextCounter1);
+    Mux(a=storedData0, b=storedData1, sel=counter0, out=muxLevel1Out0);
+    Mux(a=storedData2, b=storedData3, sel=counter0, out=muxLevel1Out1);
+    Mux(a=muxLevel1Out0, b=muxLevel1Out1, sel=counter1, out=selectedBit);
+    And(a=selectedBit, b=active, out=sout);
 }
